@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minnee Chatbot</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<button id="openChat" class="open-btn">Open Minnee</button>
+
+<div id="chatbot" class="chatbot">
+
+  <!-- HEADER -->
+  <div class="chat-header">
+    <img src="assets/shapes/header-shape.svg" class="header-svg">
+
+    <div class="header-text">
+      <h2>Hii, Good Morning 👋</h2>
+      <p>How can I assist you today ?</p>
+    </div>
+
+    <button id="closeChat" class="close-btn">×</button>
+  </div>
+
+  <!-- BADGE OUTSIDE HEADER (Correct Figma placement) -->
+  <div class="minnee-badge">
+    <img src="assets/shapes/Robot.svg" class="badge-icon">
+    <span>Minnee</span>
+  </div>
+
+  <!-- WHITE BODY -->
+  <div class="chat-body">
+
+    <div class="category-row">
+      <button class="cat purple">Purchase Order</button>
+      <button class="cat green">Planning</button>
+      <button class="cat orange">Sales Order</button>
+    </div>
+
+    <div class="suggestions">
+      <button class="chip">Last Purchase Order creation details</button>
+      <button class="chip">Can we make a PO in the backdate?</button>
+      <button class="chip">ASN creation</button>
+      <button class="chip">Backdate LR creation</button>
+      <button class="chip">changes in a PO automatically update the item master data?</button>
+      <button class="chip">LR</button>
+      <button class="chip">PO edit changes barcode?</button>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="chat-footer">
+    <input placeholder="Ask anything. Track PO, create ASN or view Gate Entry or more...">
+    <button class="send-btn">➤</button>
+  </div>
+
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>

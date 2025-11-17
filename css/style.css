@@ -1,0 +1,323 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, sans-serif;
+}
+
+body {
+  background: #eef1f5;
+}
+
+/* MAIN CHATBOT CARD */
+.chatbot {
+  position: fixed;
+  width: 668px;
+  height: 695px;
+  top: 175px;
+  left: 742px;
+  background: white;
+  border-radius: 10px;
+
+  box-shadow: 0 15px 45px rgba(0,0,0,.15);
+
+  opacity: 0;
+  transform: scale(.85);
+  pointer-events: none;
+  transition: 0.25s ease;
+}
+
+.chatbot.open {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+/* OPEN BUTTON */
+.open-btn {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background: #6f56ff;
+  color: white;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* ---------------- HEADER ---------------- */
+.chat-header {
+  position: relative;
+  width: 100%;
+  height: 121.9px; /* EXACT FIGMA */
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+}
+
+/* SVG EXACT FIT */
+.header-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 121.9px;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* HEADER TEXT */
+.header-text {
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  z-index: 5;
+}
+
+.header-text h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+}
+
+.header-text p {
+  color: #eaf4ff;
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+/* CLOSE BUTTON */
+.close-btn {
+  position: absolute;
+  top: 7.05px;
+  right: 7.05px;
+  /* left: 7.05px; */
+
+  width: 25px;
+  height: 25px;
+  color: white;
+  background: #FFFFFF1A;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  z-index: 10;
+}
+
+
+/* ---------------- MINNEE BADGE (OUTSIDE HEADER) ---------------- */
+.minnee-badge {
+  position: absolute;
+
+  /* EXACT FIGMA POS */
+  top: 85px;
+  left: 488px;
+
+  width: 143.68px;
+  height: 52.29px;
+
+  background: white;
+  border-radius: 218.32px;
+  border: 2.18px solid rgba(255,255,255,.9);
+
+  padding: 13.1px;
+  display: flex;
+  align-items: center;
+  gap: 6.55px;
+
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+
+  z-index: 20;
+}
+
+.badge-icon {
+  height: 30px;
+}
+
+/* ---------------- BODY ---------------- */
+/* CHAT BODY FIXED POSITION BELOW BADGE */
+.chat-body {
+  position: absolute;
+  top: 123px;    /* FIXED - BELOW BADGE + CURVE */
+  left: 0;
+  width: 100%;
+  height: calc(695px - 140px - 80px);  /* BODY SPACE */
+  padding: 20px 24px;
+  background: white;
+  overflow-y: auto;
+}
+
+
+/* Categories */
+.category-row {
+  display: flex;
+  gap: 12px;
+  width: 628px;
+  height: 36px;
+  opacity: 1;
+}
+
+.cat {
+  padding: 7px 16px;
+  border-radius: 40px;
+  background: white;
+  border: 2px solid;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.purple { border-color: #7b63ff; color: #6f56ff; font-size: 12px; font-weight: 500; }
+.green { border-color: #57d77b; color: #2f9d51; font-size: 12px; font-weight: 500;}
+.orange { border-color: #ffb46a; color: #e57b22; font-size: 12px; font-weight: 500;}
+
+/* Chips */
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+  width: 596px;
+  height: 110px;
+  opacity: 1; 
+}
+
+.chip {
+  padding: 7px 14px;
+  background: #f2f2f2;
+  border-radius: 30px;
+  border: none;
+  font-size: 12px;
+  font-weight: 400;
+  font: poppins;
+  font-style: regular;
+}
+
+/* ---------------- FOOTER ---------------- */
+.chat-footer {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+
+  background: white;
+  border: 1px solid #ededed;
+
+  padding: 8px 12px;
+  border-radius: 14px;
+
+  display: flex;
+  align-items: center;
+  z-index: 50;
+}
+
+
+
+.chat-footer input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.send-btn {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg,#6f56ff,#57c6ff);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+/* =========================================
+   RESPONSIVE CHATBOT (DESKTOP → MOBILE)
+   ========================================= */
+
+/* LARGE SCREENS (default Figma layout) */
+@media (min-width: 1200px) {
+  .chatbot {
+    left: calc(50% - 334px);  /* CENTER instead of fixed 742px */
+  }
+}
+
+/* MEDIUM SCREENS (Tablets) */
+@media (max-width: 1199px) {
+  .chatbot {
+    left: 50%;
+    top: 120px;
+    transform: translateX(-50%) scale(0.9);
+  }
+
+  .minnee-badge {
+    left: calc(100% - 180px);
+  }
+}
+
+/* SMALL SCREENS (Mobile Landscape) */
+@media (max-width: 768px) {
+  .chatbot {
+    width: 90%;
+    height: 620px;
+    left: 50%;
+    top: 100px;
+    transform: translateX(-50%) scale(1);
+  }
+
+  .chat-header {
+    height: 110px;
+  }
+
+  .minnee-badge {
+    top: 75px;
+    left: calc(100% - 165px);
+    transform: scale(0.9);
+  }
+
+  .chat-body {
+    top: 130px;
+    height: calc(620px - 130px - 80px);
+  }
+}
+
+/* EXTRA SMALL SCREENS (Mobile Portrait) */
+@media (max-width: 480px) {
+  .chatbot {
+    width: 95%;
+    height: 580px;
+    top: 80px;
+  }
+
+  .header-text h2 {
+    font-size: 22px;
+  }
+
+  .minnee-badge {
+    top: 70px;
+    left: calc(100% - 155px);
+    transform: scale(0.85);
+  }
+
+  .chat-body {
+    top: 120px;
+    height: calc(580px - 120px - 80px);
+    padding: 14px;
+  }
+
+  .chat-footer {
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+  }
+
+  .send-btn {
+    width: 42px;
+    height: 42px;
+  }
+}
