@@ -154,10 +154,17 @@ function renderList(list, q) {
 
   const items = list.slice(0, 10);
   if (!items.length) {
-    poList.innerHTML = `<div class="po-row">No matches found</div>`;
-    poDropdown.style.display = "block";
+    // poList.innerHTML = `<div class="po-row">No matches found</div>`;
+    // poDropdown.style.display = "block";
+    hideDropdown();
     return;
   }
+    // if (!items.length) {
+    // hideDropdown();
+    // return;
+    // }
+
+
 
   const regex = new RegExp(q, "ig");
 
