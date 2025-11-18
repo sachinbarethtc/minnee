@@ -53,11 +53,34 @@
   </div>
 
   <!-- FOOTER -->
-   <div class="chat-footer">
+   <!-- <div class="chat-footer">
     <img src="assets/shapes/ai.svg" class="ai-icon">
     <input placeholder="Ask anything. Track PO, create ASN or view Gate Entry or more...">
-    <button class="send-btn">➤</button>
-  </div>
+    <button class="send-btn">
+      <img src="assets/shapes/send-btn.svg" class="send-icon">
+    </button>
+    <div id="dropdown" class="po-dropdown" style="display:none;">
+        <div id="poList" class="po-list"></div>
+    </div>
+  </div> -->
+  <div class="chat-footer">
+    <img src="assets/shapes/ai.svg" class="ai-icon">
+
+    <!-- FIXED: input has id="poInput" -->
+    <input id="poInput" placeholder="Ask anything. Track PO, create ASN or view Gate Entry or more...">
+
+    <button class="send-btn">
+      <img src="assets/shapes/send-btn.svg" class="send-icon">
+    </button>
+
+    <!-- FIXED: dropdown id changed to poDropdown -->
+    <div id="poDropdown" class="po-dropdown" style="display:none;">
+        <div id="poList" class="po-list"></div>
+        <div id="poError" class="po-error" style="display:none;"></div>
+    </div>
+
+</div>
+
 
 </div>
 
