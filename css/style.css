@@ -124,7 +124,7 @@ body {
 /* BODY */
 .chat-body {
   position: absolute;
-  top: 125px;
+  top: 135px;
   bottom: 85px;
   left: 0;
   right: 0;
@@ -408,6 +408,7 @@ body {
   color: #6f7d8f;
 }
 
+
 .arrow-icon {
   width: 12px;
   height: 12px;
@@ -421,3 +422,58 @@ mark {
   border-radius: 4px;
   font-weight: 600;
 }
+
+.status-icon-wrapper {
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-icon-wrapper img,
+.status-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+
+/* .chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+} */
+
+/* ensure messages area has room from top when chips hidden */
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+  padding-right: 8px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+
+.msg-bubble {
+  align-self: flex-end;
+  background: #5D5FEF;
+  color: white;
+  /* padding: 10px 16px; */
+  border-radius: 20px;
+  font-size: 14px;
+  /* max-width: 70%; */
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  top: 170px;
+  left: 488px;
+  gap: 10px;
+  padding-top: 6px;
+  padding-right: 10px;
+  padding-bottom: 6px;
+  padding-left: 10px;
+}
+
