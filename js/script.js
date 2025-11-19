@@ -94,7 +94,7 @@ poInput.addEventListener("keydown", (e) => {
 *******************************/
 function generatePOCard(po) {
 
-  const statusIcon = po.poSetType === "SET"
+  const statusIcon = po.poSetType === "S"
     ? `<img src="assets/shapes/S.svg" class="po-status-icon">`
     : `<img src="assets/shapes/N.svg" class="po-status-icon">`;
 
@@ -258,7 +258,7 @@ async function fetchPODetails(docNum) {
 
     const mappedPO = {
       documentNumber: r.documentNumber,
-      poSetType: r.poSetType,
+      poSetType: item.setType,
       poDate: r.poDate,
       poAmount: r.poAmount,
       validFromDate: r.validFromDate,
