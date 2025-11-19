@@ -124,8 +124,10 @@ body {
 /* BODY */
 .chat-body {
   position: absolute;
-  top: 135px;
-  bottom: 85px;
+  /* top: 135px; */
+  top: 126px;
+  /* bottom: 85px; */
+  bottom: 66px;
   left: 0;
   right: 0;
   padding: 20px 24px;
@@ -496,7 +498,7 @@ mark {
 .bot-message-wrapper {
     display: flex;
     justify-content: flex-start;
-    width: 100%;
+    width: 80%;
 }
 
 .bot-po-card {
@@ -543,6 +545,7 @@ mark {
 .po-grid-2 div {
     display: flex;
     flex-direction: column;
+    gap: 6px; 
 }
 
 .po-small-label {
@@ -584,4 +587,46 @@ mark {
     margin-top: 8px;
     color: #111D31;
     height: 10px;
+    font-family: 'poppins', sans-serif;
+}
+
+
+/* STANDALONE BUTTONS (NO CARD) */
+.bot-button-wrapper-alone {
+    margin-top: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    width: 82%;
+}
+
+.bot-button-alone {
+    padding: 9px 20px;
+    border-radius: 40px;
+    border: 2px solid #7b63ff;
+    background: transparent;
+    color: #6f56ff;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+    line-height: 100%;
+}
+
+.bot-button-alone:hover {
+    background: #f4efff;
+}
+
+.bot-button-alone img {
+    width: 15px;
+}
+
+.navigate-btn-alone img {
+    width: 16px;
 }
