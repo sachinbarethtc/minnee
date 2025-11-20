@@ -453,20 +453,38 @@ const closeBtn = document.getElementById("closeChat");
 const categoryRow = document.querySelector(".category-row");
 const suggestionsRow = document.querySelector(".suggestions");
 
+// openBtn.onclick = () => {
+//   chatbot.classList.add("open");
+//   openBtn.style.display = "none";
+//   categoryRow.style.display = "flex";
+//   suggestionsRow.style.display = "flex";
+// };
+
+// closeBtn.onclick = () => {
+//   chatbot.classList.remove("open");
+//   openBtn.style.display = "block";
+//   categoryRow.style.display = "flex";
+//   suggestionsRow.style.display = "flex";
+// };
+
 openBtn.onclick = () => {
   chatbot.classList.add("open");
   openBtn.style.display = "none";
-  categoryRow.style.display = "flex";
-  suggestionsRow.style.display = "flex";
+
+  // Show starting UI ONLY before chat starts
+  if (!isChatStarted) {
+    categoryRow.style.display = "flex";
+    suggestionsRow.style.display = "flex";
+  }
 };
 
 closeBtn.onclick = () => {
   chatbot.classList.remove("open");
   openBtn.style.display = "block";
-  categoryRow.style.display = "flex";
-  suggestionsRow.style.display = "flex";
 };
 
+
+let isChatStarted = false;
 
 /*******************************
  GLOBAL DOM
@@ -523,6 +541,7 @@ function sendUserMessage() {
   hideDropdown();
   categoryRow.style.display = "none";
   suggestionsRow.style.display = "none";
+  isChatStarted = true;
 
   addUserBubble(text);
 
@@ -620,7 +639,8 @@ function generateStandaloneButtons() {
   wrapper.className = "bot-button-wrapper-alone";
 
   wrapper.innerHTML = `
-        <button class="bot-button-alone" id="btn-initiate">
+        <button class="bot-button-alone btn-initiate">
+
             <img src="assets/shapes/plus.svg">
             Yes, Initiate the ASN for me
         </button>
@@ -638,6 +658,59 @@ function generateStandaloneButtons() {
 
   return wrapper;
 }
+
+/***********************
+ ASN Card GENERATOR
+ **************************/
+
+function generateASNCard(asnData) {
+  const card = document.createElement("div");
+  card.className = "bot-po-card";
+
+  let rowsHTML = "";
+  asnData.items.forEach(i => {
+    rowsHTML += `
+      <div class="asn-row">
+        <span>${i.itemName}</span>
+        <span>${i.qty}</span>
+        <span>${i.pending}</span>
+        <span>${i.requested}</span>
+      </div>
+    `;
+  });
+
+  card.innerHTML = `
+    <!-- TITLE -->
+    <div class="asn-title-row">
+      <span class="asn-title">${asnData.poNumber}</span>
+      <img src="assets/shapes/S.svg" class="po-status-icon">
+    </div>
+
+    <!-- TABLE HEADER -->
+    <div class="asn-header">
+      <span>Line Items</span>
+      <span>Qty</span>
+      <span>Pending</span>
+      <span>Requested</span>
+    </div>
+
+    <!-- ITEMS TABLE -->
+    <div class="asn-table">
+      ${rowsHTML}
+    </div>
+
+    <!-- SEPARATOR LINE -->
+    <div class="asn-separator"></div>
+
+    <!-- FOOTER TEXT -->
+    <div class="asn-footer-text">
+      Provide the Qty, for Creating New ASN
+    </div>
+  `;
+
+  return card;
+}
+
 
 
 /*******************************
@@ -698,17 +771,26 @@ async function fetchPODetails(docNum) {
     const detailJson = await detailRes.json();
     const r = detailJson?.data?.resource;
     const item = r.poDetails?.[0] || {};
+    const allItems = r.poDetails || [];
 
     const mappedPO = {
       documentNumber: r.documentNumber,
-      poSetType: item.setType, // FIXED (S/N)
+      poSetType: item.setType,
       poDate: r.poDate,
       poAmount: r.poAmount,
       validFromDate: r.validFromDate,
       validToDate: r.validToDate,
       poQty: r.poQty,
-      remainingQty: r.pendingQty
+      remainingQty: r.pendingQty,
+      items: r.poDetails.map(d => ({
+        itemName: d.itemName || d.itemCode || "Item",
+        qty: d.qty || d.orderQty || 0,
+        pending: d.pendingQty || d.availableQty || 0,
+        requested: d.requestedQty || d.qty || 0
+      }))
     };
+    window.activePO = mappedPO;
+
 
     // RENDER CARD
     const card = generatePOCard(mappedPO);
@@ -733,7 +815,56 @@ async function fetchPODetails(docNum) {
       const btnCreateAll = document.getElementById("btn-create-all");
       const btnNavigate = document.getElementById("btn-navigate");
 
-      btnInit.onclick = () => addUserBubble("Yes, Initiate the ASN for me");
+      // btnInit.onclick = () => {
+      //   addUserBubble("Yes, Initiate the ASN for me");
+
+      //   const asnData = {
+      //     poNumber: mappedPO.documentNumber,
+      //     items: mappedPO.items
+      //   };
+
+      //   const card = generateASNCard(asnData);
+
+      //   const wrapper = document.createElement("div");
+      //   wrapper.className = "bot-message-wrapper";
+      //   wrapper.appendChild(card);
+
+      //   chatMessages.appendChild(wrapper);
+      //   chatMessages.scrollTop = chatMessages.scrollHeight;
+      // };
+
+      document.addEventListener("click", function (e) {
+
+        const btn = e.target.closest(".btn-initiate");
+        if (!btn) return;
+
+        // prevent multiple runs
+        if (btn.dataset.used === "true") return;
+
+        btn.dataset.used = "true";  
+        btn.style.opacity = "0.4";
+        btn.style.pointerEvents = "none";
+
+        addUserBubble("Yes, Initiate the ASN for me");
+
+        const asnData = {
+          poNumber: window.activePO.documentNumber,
+          items: window.activePO.items
+        };
+
+        const card = generateASNCard(asnData);
+
+        const wrapper = document.createElement("div");
+        wrapper.className = "bot-message-wrapper";
+        wrapper.appendChild(card);
+
+        chatMessages.appendChild(wrapper);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      });
+
+
+
+
       btnCreateAll.onclick = () =>
         addUserBubble("Create ASN for all the remaining qty.");
       btnNavigate.onclick = () => addUserBubble("Navigate to Purchase Indent");
@@ -877,5 +1008,17 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".chat-footer")) hideDropdown();
   });
+
+  document.querySelectorAll(".cat").forEach(btn => {
+    btn.addEventListener("click", () => {
+
+      // Remove active class from all category buttons
+      document.querySelectorAll(".cat").forEach(b => b.classList.remove("active"));
+
+      // Add active class to the clicked one
+      btn.classList.add("active");
+    });
+  });
+
 });
 

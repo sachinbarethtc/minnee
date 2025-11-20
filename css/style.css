@@ -126,9 +126,9 @@ body {
 .chat-body {
   position: absolute;
   /* top: 135px; */
-  top: 126px;
+  top: 115px;
   /* bottom: 85px; */
-  bottom: 66px;
+  bottom: 50px;
   left: 0;
   right: 0;
   padding: 20px 24px;
@@ -153,9 +153,70 @@ body {
   font-weight: 500;
 }
 
-.purple { border-color: #7b63ff; color: #6f56ff; }
-.green { border-color: #57d77b; color: #2f9d51; }
-.orange { border-color: #ffb46a; color: #e57b22; }
+/* .purple { border-color: #7b63ff; color: #6f56ff; } */
+/* Normal State */
+.purple {
+  border: 1px solid #7b63ff;
+  color: #6f56ff;
+  background: transparent;
+  transition: 0.25s;
+  font-size: 12px;
+}
+
+/* Hover State (Row 2 look) */
+.purple:hover {
+  background: #edeaff;       /* light purple fill */
+  border-color: #7b63ff;
+  color: #5a3dff;            /* little darker purple */
+}
+
+/* Active State (Row 3 look) */
+.purple.active {
+  background: #5b54f5;
+  color: #fff;
+  border-color: #5b54f5;
+}
+
+/* .green { border-color: #57d77b; color: #2f9d51; } */
+.green {
+  border: 1px solid #57d77b;
+  color: #2f9d51;
+  background: transparent;
+  transition: 0.25s;
+  font-size: 12px;
+}
+
+.green:hover {
+  background: #dff7e6;     /* light green */
+  color: #17833a;
+}
+
+.green.active {
+  background: #00b159;
+  color: #fff;
+  border-color: #00b159;
+}
+
+/* .orange { border-color: #ffb46a; color: #e57b22; } */
+.orange {
+  border: 1px solid #ffb46a;
+  color: #e57b22;
+  background: transparent;
+  transition: 0.25s;
+  font-size: 12px;
+}
+
+.orange:hover {
+  background: #ffe9d2;     /* light orange */
+  color: #d86a12;
+}
+
+.orange.active {
+  background: #ff9800;
+  color: #fff;
+  border-color: #ff9800;
+}
+
 
 /* Chips */
 .suggestions {
@@ -564,7 +625,8 @@ mark {
     width: 18px;
     height: 18px;
     object-fit: contain;
-    display: block;        
+    display: block; 
+    border: 1px;       
 }
 
 
@@ -626,4 +688,54 @@ mark {
 
 .navigate-btn-alone img {
     width: 16px;
+}
+
+
+/* ASN CARD TABLE */
+/* TITLE ROW */
+.asn-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.asn-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111;
+}
+
+/* TABLE HEADER */
+.asn-header {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  font-size: 12px;
+  font-weight: 600;
+  color: #212121;
+  margin-bottom: 10px;
+}
+
+/* ITEM ROWS */
+.asn-row {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  font-size: 13px;
+  padding: 1px 0;
+  color: #444;
+}
+
+/* SEPARATOR LINE */
+.asn-separator {
+  width: 100%;
+  height: 1px;
+  background: #dcdcdc;
+  margin: 12px 0;
+}
+
+/* FOOTER */
+.asn-footer-text {
+  font-size: 11px;
+  font-weight: 600;
+  color: #111D31;
 }
