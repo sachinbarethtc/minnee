@@ -128,12 +128,33 @@ body {
   /* top: 135px; */
   top: 115px;
   /* bottom: 85px; */
+  /* bottom: 50px; */
   bottom: 50px;
   left: 0;
   right: 0;
   padding: 20px 24px;
   overflow-y: auto;
 }
+
+/* Light Scrollbar for chat-body only */
+.chat-body::-webkit-scrollbar {
+  width: 10px;              /* thin scrollbar */
+}
+
+.chat-body::-webkit-scrollbar-track {
+  background: #f1f1f1;     /* light grey track */
+  border-radius: 10px;
+}
+
+.chat-body::-webkit-scrollbar-thumb {
+  background: #d6d6d6;     /* light thumb */
+  border-radius: 10px;
+}
+
+.chat-body::-webkit-scrollbar-thumb:hover {
+  background: #bcbcbc;     /* slightly darker on hover */
+}
+
 
 /* Categories */
 .category-row {
@@ -233,6 +254,7 @@ body {
   border-radius: 30px;
   border: none;
   font-size: 12px;
+  /* cursor: pointer; */
 }
 
 /* FOOTER */
@@ -738,4 +760,14 @@ mark {
   font-size: 11px;
   font-weight: 600;
   color: #111D31;
+}
+
+
+
+#suggestionsBox {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
 }
