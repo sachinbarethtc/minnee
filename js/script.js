@@ -156,6 +156,11 @@ async function sendUserMessage() {
   addUserBubble(text);
   poInput.value = "";
 
+   // 🟣 Hide chips + categories ALWAYS after first message
+  categoryRow.style.display = "none";
+  suggestionsRow.style.display = "none";
+  isChatStarted = true;
+
   // 1️⃣ ASN MODE → backend direct ASN
   if (window.asnMode === true) {
       callASNBackend(text, window.activePO.documentNumber);
