@@ -54,7 +54,7 @@ const poList = document.getElementById("poList");
 const poError = document.getElementById("poError");
 
 const AUTH_TOKEN =
-  "eyJhbGciOiJIUzUxMiJ9.eyJtb2IiOiIrODUyOTg5OTk5OSIsImVpZCI6ODE5LCJsYXN0TmFtZSI6IiBEZW1vIiwiY291bnRyeSI6IklOIiwiZGVsZWdhdGVVc2VySWQiOjAsImxvZ2luU3RyaXBNZXNzYWdlIjpudWxsLCJzY2hlbWFFbnROYW1lIjoiVGNsb3VkIiwiZW1sIjoicGF5YWwucGF5YWwxMjM0NTY3ODkxMjM0NUB0dXJuaW5nY2xvdWQuY29tIiwicm9sZXMiOiI4NDF8MTM5NiIsIlgtVEVOQU5ULUlEIjoiZDE2YzE0OTkxOTQzM2RiY2Q0YmE1YzMyNTVhZThmZTFjOTA2YTk5Yjk2N2Y1MTkzZjE5ZWNkNGJkNGI1MTkwMSIsIkJVQ0tFVCI6InRjbG91ZC1zdXBwbHltaW50LWRldmVsb3AtY29tIiwiaXNzIjoiU3VwcGx5TWludCIsInRva2VuVGltZSI6IjE3NjM3Mjc2NDEiLCJtb2JpbGVWZXJpZmllZCI6MSwibGFuZ3VhZ2UiOiJlbiIsIm9pZCI6OTU4LCJ1c2VyQXNBZG1pbiI6dHJ1ZSwiZ3N0aW4iOm51bGwsInNlc3Npb25ObyI6IjEiLCJvcmdJZCI6Ijk1OCIsImRlbGVnYXRlT3JnSWQiOjAsIm9jb2RlIjoiMjAyMDU1NDctZTg2ZS00MmI1LWFjMGYtNDRlMTBjMzlmZTczIiwidVR5cGUiOiJWRU5ET1IiLCJpcGEiOiJJUEEiLCJmdW5jdGlvblR5cGUiOiJERUZBVUxUX0ZVTkNUSU9OIiwiZXhwIjoxNzYzNzQ5MjQyLCJqdGkiOjk4MCwiZGVsZWdhdGVFbnRJZCI6MCwib3JnTmFtZSI6IkRlbW9yIFRDbG91ZCIsImNvcmVPcmdJRCI6Ijk1OCIsInNsQ29kZSI6Ijg5MjY2IiwibmV3TW9kdWxlU3RydWN0dXJlIjowLCJwcm4iOiJmYXNoaW9uZGVtbyIsImVjb2RlIjoiMjAyMDU1NDctZTg2ZS00MmI1LWFjMGYtNDRlMTBjMzlmZTczIiwiYXVkIjoiRmFzaGlvbiAgRGVtbyIsInNjaGVtYUVudElEIjoiMSIsImVtYWlsVmVyaWZpZWQiOjEsImZpcnN0TmFtZSI6IkZhc2hpb24iLCJlbmFtZSI6IkRlbW9yIFRDbG91ZCIsInN1YlVzZXJUeXBlIjoiViIsIndlYklkIjpudWxsLCJ0ZW5hbnRPcmdJRCI6Ijk1OCIsImRldmljZVNvdXJjZSI6IldFQiIsImlzTWVyZ2VFbGlnaWJsZSI6MCwic2NoZW1hT3JnSUQiOiIyIiwiRU5UX1RZUEUiOiJWRU5ET1IiLCJsb2dpblNvdXJjZSI6IlNFTEYiLCJvcmdfbG9nbyI6Imh0dHBzOi8vYXNzZXRzLXN1cHBseW1pbnQtY29tLnMzLmFwLXNvdXRoLTEuYW1hem9uYXdzLmNvbS9vcmdfYXNzZXRzL2ltZ19wbGFjZWhvbGRlci9wcm9maWxlUGxhY2Vob2xkZXIuc3ZnIn0.fCZ-JVgp1r0xCqlSgvsFzXLx6hABC5SIS2QPSig_Ll-R6Huk4lhBA7WGk4LNSOSWqihKSWA_fvWqS7sSZ3PzgQ";
+  "eyJhbGciOiJIUzUxMiJ9.eyJtb2IiOiIrODUyOTg5OTk5OSIsImVpZCI6ODE5LCJsYXN0TmFtZSI6IiBEZW1vIiwiY291bnRyeSI6IklOIiwiZGVsZWdhdGVVc2VySWQiOjAsImxvZ2luU3RyaXBNZXNzYWdlIjpudWxsLCJzY2hlbWFFbnROYW1lIjoiVGNsb3VkIiwiZW1sIjoicGF5YWwucGF5YWwxMjM0NTY3ODkxMjM0NUB0dXJuaW5nY2xvdWQuY29tIiwicm9sZXMiOiI4NDF8MTM5NiIsIlgtVEVOQU5ULUlEIjoiZDE2YzE0OTkxOTQzM2RiY2Q0YmE1YzMyNTVhZThmZTFjOTA2YTk5Yjk2N2Y1MTkzZjE5ZWNkNGJkNGI1MTkwMSIsIkJVQ0tFVCI6InRjbG91ZC1zdXBwbHltaW50LWRldmVsb3AtY29tIiwiaXNzIjoiU3VwcGx5TWludCIsInRva2VuVGltZSI6IjE3NjM5NTcyODgiLCJtb2JpbGVWZXJpZmllZCI6MSwibGFuZ3VhZ2UiOiJlbiIsIm9pZCI6OTU4LCJ1c2VyQXNBZG1pbiI6dHJ1ZSwiZ3N0aW4iOm51bGwsInNlc3Npb25ObyI6IjEiLCJvcmdJZCI6Ijk1OCIsImRlbGVnYXRlT3JnSWQiOjAsIm9jb2RlIjoiMjAyMDU1NDctZTg2ZS00MmI1LWFjMGYtNDRlMTBjMzlmZTczIiwidVR5cGUiOiJWRU5ET1IiLCJpcGEiOiJJUEEiLCJmdW5jdGlvblR5cGUiOiJERUZBVUxUX0ZVTkNUSU9OIiwiZXhwIjoxNzYzOTc4ODg4LCJqdGkiOjk4MCwiZGVsZWdhdGVFbnRJZCI6MCwib3JnTmFtZSI6IkRlbW9yIFRDbG91ZCIsImNvcmVPcmdJRCI6Ijk1OCIsInNsQ29kZSI6Ijg5MjY2IiwibmV3TW9kdWxlU3RydWN0dXJlIjowLCJwcm4iOiJmYXNoaW9uZGVtbyIsImVjb2RlIjoiMjAyMDU1NDctZTg2ZS00MmI1LWFjMGYtNDRlMTBjMzlmZTczIiwiYXVkIjoiRmFzaGlvbiAgRGVtbyIsInNjaGVtYUVudElEIjoiMSIsImVtYWlsVmVyaWZpZWQiOjEsImZpcnN0TmFtZSI6IkZhc2hpb24iLCJlbmFtZSI6IkRlbW9yIFRDbG91ZCIsInN1YlVzZXJUeXBlIjoiViIsIndlYklkIjpudWxsLCJ0ZW5hbnRPcmdJRCI6Ijk1OCIsImRldmljZVNvdXJjZSI6IldFQiIsImlzTWVyZ2VFbGlnaWJsZSI6MCwic2NoZW1hT3JnSUQiOiIyIiwiRU5UX1RZUEUiOiJWRU5ET1IiLCJsb2dpblNvdXJjZSI6IlNFTEYiLCJvcmdfbG9nbyI6Imh0dHBzOi8vYXNzZXRzLXN1cHBseW1pbnQtY29tLnMzLmFwLXNvdXRoLTEuYW1hem9uYXdzLmNvbS9vcmdfYXNzZXRzL2ltZ19wbGFjZWhvbGRlci9wcm9maWxlUGxhY2Vob2xkZXIuc3ZnIn0.Q6JJmRJZaioTn6qKzJThFHvh8wKzV-ecbFrvlSIdin0LriOO9sNJ91d1yRrfgaOWxz7hVqlqnJJc4NI18kGtIQ";
 
 
 /*******************************
@@ -110,20 +110,66 @@ function hideDropdown() {
 /*******************************
  USER SEND MESSAGE
 *******************************/
-function sendUserMessage() {
-  const text = poInput.value.trim();
-  if (text === "") return;
+// function sendUserMessage() {
+//   const text = poInput.value.trim();
+//   if (text === "") return;
 
-  hideDropdown();
-  categoryRow.style.display = "none";
-  suggestionsRow.style.display = "none";
-  isChatStarted = true;
+//   hideDropdown();
+//   categoryRow.style.display = "none";
+//   suggestionsRow.style.display = "none";
+//   isChatStarted = true;
+
+//   addUserBubble(text);
+
+//   poInput.value = "";
+
+//   fetchPODetails(text);
+// }
+
+
+// async function sendUserMessage() {
+//   const text = poInput.value.trim();
+//   if (!text) return;
+
+//   addUserBubble(text);
+//   poInput.value = "";
+
+//   // 🔥 If ASN mode is active → send to direct ASN backend
+//   if (window.asnMode === true) {
+//       callASNBackend(text, window.activePO.documentNumber);
+//       return;
+//   }
+
+//   // Normal flow (PO details)
+//   categoryRow.style.display = "none";
+//   suggestionsRow.style.display = "none";
+//   isChatStarted = true;
+
+//   fetchPODetails(text);
+// }
+
+
+async function sendUserMessage() {
+  const text = poInput.value.trim();
+  if (!text) return;
 
   addUserBubble(text);
-
   poInput.value = "";
 
-  fetchPODetails(text);
+  // 1️⃣ ASN MODE → backend direct ASN
+  if (window.asnMode === true) {
+      callASNBackend(text, window.activePO.documentNumber);
+      return;
+  }
+
+  // 2️⃣ If it's a PO → run PO flow
+  if (isLikelyPO(text)) {
+      fetchPODetails(text);
+      return;
+  }
+
+  // 3️⃣ Otherwise → it's a normal RAG question
+  callRagBackend(text);
 }
 
 
@@ -234,6 +280,33 @@ function generatePOCard(po) {
   return card;
 }
 
+// function isLikelyPO(text) {
+//     // PO usually starts with "PO" OR only digits with length >= 6
+//     if (text.startsWith("PO")) return true;
+//     if (/^\d{6,}$/.test(text)) return true;
+//     return false;
+// }
+
+function isLikelyPO(text) {
+    text = text.trim();
+
+    // reject if message contains spaces → not a PO
+    if (text.includes(" ")) return false;
+
+    // reject if user is asking a question → not PO
+    if (text.endsWith("?")) return false;
+
+    // PO usually starts with "PO" + some numbers
+    if (/^PO\d{4,}/i.test(text)) return true;
+
+    // OR full numeric PO (6+ digits)
+    if (/^\d{6,}$/.test(text)) return true;
+
+    return false;
+}
+
+
+
 
 /*******************************
  CARD BUTTONS
@@ -305,7 +378,7 @@ function generateASNCard(asnData) {
 
     <!-- FOOTER TEXT -->
     <div class="asn-footer-text">
-      Provide the Qty, for Creating New ASN
+      Provide the Qty with all the details for creating New ASN
     </div>
   `;
 
@@ -466,6 +539,9 @@ async function fetchPODetails(docNum) {
 
         chatMessages.appendChild(wrapper);
         chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        // VERY IMPORTANT → Enable ASN Mode
+        window.asnMode = true;
       });
 
 
@@ -692,3 +768,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+async function callASNBackend(detailsText, poNumber) {
+
+    const res = await fetch("http://127.0.0.1:8000/asn/direct", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            poNumber: poNumber,
+            userText: detailsText
+        })
+    });
+
+    const data = await res.json();
+
+    if (data.error) {
+        addBotBubble("⚠️ " + data.error);
+        return;
+    }
+
+    addBotBubble("ASN payload generated successfully.");
+    addBotBubble("Here is your ASN JSON link: " + data.link);
+
+    // Turn ASN mode OFF
+    window.asnMode = false;
+}
+
+async function callRagBackend(text) {
+    const response = await fetch("http://127.0.0.1:8000/rag/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: text, session_id: "default" })
+    });
+
+    const data = await response.json();
+    addBotBubble(data.answer);
+}
