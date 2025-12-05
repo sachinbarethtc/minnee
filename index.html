@@ -78,5 +78,26 @@
 
 <script src="js/script.js"></script>
 
+  <script>
+function sendSize() {
+    const height = document.body.scrollHeight;
+    const width = document.body.scrollWidth;
+
+    parent.postMessage({
+        type: "minnee_resize",
+        height: height,
+        width: width
+    }, "*");
+}
+
+// Send once when loaded
+window.onload = sendSize;
+
+// Send on resize (if content changes height)
+window.addEventListener("resize", sendSize);
+
+// If your chatbot opens/closes panels, call sendSize()
+</script>
+
 </body>
 </html>
