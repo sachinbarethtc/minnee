@@ -1,47 +1,51 @@
 (function () {
-  const chatUrl = "https://minnee.onrender.com/";
-  const token = document.currentScript.getAttribute("data-auth-token");
-  window.AUTH_TOKEN = token;
+  const BASE_URL = "https://minnee.onrender.com";
 
-  const btn = document.createElement("div");
-  btn.id = "chat-launcher";
-  btn.innerHTML = "💬";
-  btn.style = `
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    width: 55px;
-    height: 55px;
-    background: #535cf2;
-    border-radius: 50%;
-    color: white;
-    font-size: 30px;
-    text-align: center;
-    line-height: 55px;
-    cursor: pointer;
-    z-index: 99999;
-  `;
-  document.body.appendChild(btn);
+  // 1️⃣ Load CSS
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href = `${BASE_URL}/css/style.css`;
+  document.head.appendChild(link);
 
-  const iframe = document.createElement("iframe");
-  iframe.src = chatUrl;
-  iframe.id = "chat-iframe";
-  iframe.style = `
-    position: fixed;
-    bottom: 90px;
-    right: 25px;
-    width: 380px;
-    height: 520px;
-    border: none;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    display: none;
-    z-index: 99999;
-  `;
-  document.body.appendChild(iframe);
+  async function load() {
+    // 2️⃣ Fetch full HTML content
+    const res = await fetch(`${BASE_URL}/index.html`);
+    const html = await res.text();
 
-  btn.addEventListener("click", () => {
-    iframe.style.display =
-      iframe.style.display === "none" ? "block" : "none";
-  });
+    // 3️⃣ Create temporary container
+    const temp = document.createElement("div");
+    temp.innerHTML = html;
+
+    // 4️⃣ Extract YOUR chatbot + YOUR button
+    const chatbot = temp.querySelector("#chatbot");
+    const openBtn = temp.querySelector("#openChat");
+
+    if (!chatbot || !openBtn) {
+      console.error("❌ Chatbot elements not found in index.html");
+      return;
+    }
+
+    // 5️⃣ Add to client website
+    document.body.appendChild(chatbot);
+    document.body.appendChild(openBtn);
+
+    // 6️⃣ Make sure positioning works like widget
+    chatbot.style.position = "fixed";
+    chatbot.style.bottom = "80px";
+    chatbot.style.right = "40px";
+    chatbot.style.zIndex = "999999";
+
+    openBtn.style.zIndex = "1000000";
+    openBtn.style.position = "fixed";
+    openBtn.style.bottom = "40px";
+    openBtn.style.right = "40px";
+
+    // 7️⃣ Now load your JS logic AFTER element mounted
+    const script = document.createElement("script");
+    script.src = `${BASE_URL}/js/script.js`;
+    script.defer = true;
+    document.body.appendChild(script);
+  }
+
+  document.addEventListener("DOMContentLoaded", load);
 })();
