@@ -4,29 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Minnee Chatbot</title>
+
   <script src="https://sachinbarethtc.github.io/minnee_2/chatbot.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<!-- <button id="openChat" class="open-btn">Open Minnee</button> -->
-
-<div id="chatbot" class="chatbot open">
+<div id="chatbot" class="chatbot">
 
   <!-- HEADER -->
   <div class="chat-header">
     <img src="assets/shapes/header-shape.svg" class="header-svg">
-
     <div class="header-text">
       <h2>Hii, Good Morning 👋</h2>
       <p>How can I assist you today ?</p>
     </div>
-
-    <button id="closeChat" class="close-btn">×</button>
   </div>
 
-  <!-- MINNEE BADGE -->
+  <!-- BADGE -->
   <div class="minnee-badge">
     <img src="assets/shapes/Robot.svg" class="badge-icon">
     <span>Minnee</span>
@@ -36,7 +32,6 @@
   <div class="chat-body">
 
     <div class="category-row">
-      <!-- <button class="cat purple">Purchase Order</button> -->
       <button class="cat purple active">Purchase Order</button>
       <button class="cat green">Planning</button>
       <button class="cat orange">Sales Order</button>
@@ -51,33 +46,31 @@
       <button class="chip">LR</button>
       <button class="chip">PO edit changes barcode?</button>
     </div>
+
     <div id="chatMessages" class="chat-messages"></div>
-
-
   </div>
-  <!-- <div class="suggestions" id="suggestionsBox"></div> -->
-
 
   <!-- FOOTER -->
   <div class="chat-footer">
     <img src="assets/shapes/ai.svg" class="ai-icon">
 
-    <input id="poInput" placeholder="Ask anything. Track PO, create ASN or view Gate Entry or more...">
+    <input
+      id="poInput"
+      placeholder="Ask anything. Track PO, create ASN or view Gate Entry or more..."
+    >
 
     <button class="send-btn">
       <img src="assets/shapes/send-btn.svg" class="send-icon">
     </button>
 
-    <!-- PO DROPDOWN -->
-    <div id="poDropdown" class="po-dropdown" style="display:none;">
-        <div id="poList" class="po-list"></div>
-        <div id="poError" class="po-error" style="display:none;"></div>
+    <div id="poDropdown" class="po-dropdown">
+      <div id="poList" class="po-list"></div>
+      <div id="poError" class="po-error"></div>
     </div>
   </div>
 
 </div>
 
 <script src="js/script.js"></script>
-
 </body>
 </html>
